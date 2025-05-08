@@ -1,16 +1,54 @@
-import { View, Text } from 'react-native'
+import { View, Image, StyleSheet } from 'react-native'
+import StyledText from '../Text'
+import theme from '../../theme'
+import CountBox from './CountBox'
 
-const RepositoryItem = ({ item }) => (
-  <View>
-    <Text>Full name: {item.fullName}</Text>
-    <Text>Description: {item.description}</Text>
-    <Text>Language: {item.language}</Text>
-    <Text>Stars: {item.stargazersCount}</Text>
-    <Text>Forks: {item.forksCount}</Text>
-    <Text>Review: {item.reviewCount}</Text>
-    <Text>Rating: {item.ratingAverage}</Text>
-    
-  </View>
-)
+const RepositoryItem = ({ item }) => {
+  const styles = StyleSheet.create({
+    flexContainer: {
+      display: 'flex',
+      justifyContent: 'flex-start',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 10
+    },
+    image: {
+      width: 32,
+      height: 32,
+    },
+    language: {
+      backgroundColor: theme.colors.primary,
+      alignSelf: 'flex-start',
+      padding: 5,
+      borderRadius: 4,
+    }
+  })
+
+  return (
+    <>
+      <View style={styles.flexContainer}>
+        <View style={{ flexGrow: 0, margin: 3 }}>
+          <Image
+            style={styles.image}
+            source={{ uri: item.ownerAvatarUrl }}
+          />
+        </View>
+        <View style={{ flexGrow: 0 }}>
+          <StyledText color='default' fontWeight='bold'>{item.fullName}</StyledText>
+          <StyledText color='textSecondary'>{item.description}</StyledText>
+          <View style={styles.language}>
+            <StyledText color='textPrimary'>{item.language}</StyledText>
+          </View>
+        </View>
+      </View>
+      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }} >
+        <CountBox text='Stars' value={item.stargazersCount}/>
+        <CountBox text='Forks' value={item.forksCount} />
+        <CountBox text='Reviews' value={item.reviewCount}/>
+        <CountBox text='Ratings' value={item.ratingAverage}/>
+      </View>
+    </>
+  )
+}
 
 export default RepositoryItem

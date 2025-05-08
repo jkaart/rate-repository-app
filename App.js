@@ -1,4 +1,5 @@
-import Main from './src/Main'
+import React from 'react'
+import Main from './src/components/Main'
 
 const App = () => {
   return <Main />
