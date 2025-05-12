@@ -1,11 +1,11 @@
-import { Pressable } from 'react-native'
-import StyledText from '../Text'
+import { Link } from 'react-router-native'
+import StyledText from '../StyledText'
 
-const AppBarTab = ({text}) => {
+const AppBarTab = ({text, to}) => {
   return (
-  <Pressable>
+  <Link to={to}>
     <StyledText fontWeight="bold" color='textPrimary'>{text}</StyledText>
-  </Pressable>
+  </Link>
 )}
 
 export default AppBarTab

@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import StyledText from '../Text'
+import StyledText from '../StyledText'
 
 const countWithSuffix = (value) => {
   if (!isNaN(value) && value >= 1000) {

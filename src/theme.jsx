@@ -5,6 +5,10 @@ const theme = {
     textSecondary: '#595959',
     primary: '#0366d6',
     secondary: '#24292e',
+    backgroundPrimary: '#ffffff',
+    backgroundSecondary: '#e1e4e8',
+    inputPrimary: '#999999',
+    inputSecondary: '#595959'
   },
   fontSizes: {
     body: 14,

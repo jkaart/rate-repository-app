@@ -1,5 +1,5 @@
 import { View, Image, StyleSheet } from 'react-native'
-import StyledText from '../Text'
+import StyledText from '../StyledText'
 import theme from '../../theme'
 import CountBox from './CountBox'
 
@@ -10,11 +10,16 @@ const RepositoryItem = ({ item }) => {
       justifyContent: 'flex-start',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      gap: 10
+      gap: 10,
+    },
+    parentContainer: {
+      paddingBottom: 50,
+      backgroundColor: theme.colors.backgroundPrimary
     },
     image: {
       width: 32,
       height: 32,
+      borderRadius: 3,
     },
     language: {
       backgroundColor: theme.colors.primary,
@@ -25,7 +30,7 @@ const RepositoryItem = ({ item }) => {
   })
 
   return (
-    <>
+    <View style={styles.parentContainer}>
       <View style={styles.flexContainer}>
         <View style={{ flexGrow: 0, margin: 3 }}>
           <Image
@@ -47,7 +52,7 @@ const RepositoryItem = ({ item }) => {
         <CountBox text='Reviews' value={item.reviewCount}/>
         <CountBox text='Ratings' value={item.ratingAverage}/>
       </View>
-    </>
+    </View>
   )
 }
 
