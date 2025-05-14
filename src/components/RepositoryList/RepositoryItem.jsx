@@ -9,7 +9,6 @@ const RepositoryItem = ({ item }) => {
       display: 'flex',
       justifyContent: 'flex-start',
       flexDirection: 'row',
-      flexWrap: 'wrap',
       gap: 10,
     },
     parentContainer: {
@@ -23,34 +22,39 @@ const RepositoryItem = ({ item }) => {
     },
     language: {
       backgroundColor: theme.colors.primary,
-      alignSelf: 'flex-start',
       padding: 5,
       borderRadius: 4,
-    }
+    },
+    innerFlexContainer: {
+      display: 'flex',
+      alignItems: 'flex-start',
+      flexShrink: 1,
+      gap: 3
+    },
   })
 
   return (
-    <View style={styles.parentContainer}>
-      <View style={styles.flexContainer}>
-        <View style={{ flexGrow: 0, margin: 3 }}>
+    <View style={ styles.parentContainer }>
+      <View style={ styles.flexContainer }>
+        <View style={ { margin: 3 } }>
           <Image
-            style={styles.image}
-            source={{ uri: item.ownerAvatarUrl }}
+            style={ styles.image }
+            source={ { uri: item.ownerAvatarUrl } }
           />
         </View>
-        <View style={{ flexGrow: 0 }}>
-          <StyledText color='default' fontWeight='bold'>{item.fullName}</StyledText>
-          <StyledText color='textSecondary'>{item.description}</StyledText>
-          <View style={styles.language}>
-            <StyledText color='textPrimary'>{item.language}</StyledText>
+        <View style={ styles.innerFlexContainer }>
+          <StyledText color='default' fontWeight='bold'>{ item.fullName }</StyledText>
+          <StyledText color='textSecondary'>{ item.description }</StyledText>
+          <View style={ styles.language }>
+            <StyledText color='textPrimary'>{ item.language }</StyledText>
           </View>
         </View>
       </View>
-      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }} >
-        <CountBox text='Stars' value={item.stargazersCount}/>
-        <CountBox text='Forks' value={item.forksCount} />
-        <CountBox text='Reviews' value={item.reviewCount}/>
-        <CountBox text='Ratings' value={item.ratingAverage}/>
+      <View style={ { display: 'flex', flexDirection: 'row', justifyContent: 'space-around' } }>
+        <CountBox text='Stars' value={ item.stargazersCount } />
+        <CountBox text='Forks' value={ item.forksCount } />
+        <CountBox text='Reviews' value={ item.reviewCount } />
+        <CountBox text='Ratings' value={ item.ratingAverage } />
       </View>
     </View>
   )

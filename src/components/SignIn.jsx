@@ -5,6 +5,7 @@ import * as yup from 'yup'
 import theme from '../theme'
 import Button from './Button'
 import TextInputField from './TextInputField'
+import useSignIn from '../hooks/useSignIn'
 
 const initialValues = {
   username: '',
@@ -39,7 +40,7 @@ const SignInForm = ({ onSubmit }) => {
 
   return (
     <View style={ styles.container }>
-    <TextInputField
+      <TextInputField
         placeholder={ 'Username' }
         value={ formik.values.username }
         onChangeText={ formik.handleChange('username') }
@@ -51,6 +52,7 @@ const SignInForm = ({ onSubmit }) => {
         value={ formik.values.password }
         onChangeText={ formik.handleChange('password') }
         error={ formik.errors.password ? formik.errors.password : null }
+        secureTextEntry={ true }
       />
 
       <Button text='Sign in' onPress={ formik.handleSubmit } />
@@ -59,8 +61,18 @@ const SignInForm = ({ onSubmit }) => {
 }
 
 const SignIn = () => {
-  const onSubmit = values => {
-    console.log(values)
+  const [signIn] = useSignIn()
+  
+
+  const onSubmit = async (values) => {
+    const { username, password } = values
+
+    try {
+      const { data } = await signIn({ username, password })
+      console.log(data.authenticate.accessToken)
+    } catch (e) {
+      console.log(e)
+    }
   }
   return (<SignInForm onSubmit={ onSubmit } />)
 }
