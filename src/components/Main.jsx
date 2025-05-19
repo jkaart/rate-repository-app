@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
 
 const Main = () => {
   return (
-    <View style={styles.container}>
+    <View style={ styles.container }>
       <AppBar />
       <Routes>
-        <Route path='/' element={<RepositoryList />} />
-        <Route path='/signin' element={<SignIn />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path='/' element={ <RepositoryList /> } />
+        <Route path='/signin' element={ <SignIn /> } />
+        <Route path="*" element={ <Navigate to="/" replace /> } />
       </Routes>
     </View>
   )

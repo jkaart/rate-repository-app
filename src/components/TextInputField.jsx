@@ -1,5 +1,5 @@
 import { TextInput, View } from 'react-native'
-import StyledText from './StyledText'
+import Text from './Text'
 import theme from '../theme'
 
 const containerStyles = {
@@ -28,7 +28,7 @@ const TextInputField = ({ placeholder, value, onChangeText, secureTextEntry, err
       </View>
     </View>
     { error && (
-      <StyledText style={ { color: theme.colors.errorColor } }>{ error }</StyledText>
+      <Text style={ { color: theme.colors.errorColor } }>{ error }</Text>
     ) }
   </>
 )

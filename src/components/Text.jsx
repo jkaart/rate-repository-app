@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const StyledText = ({ color, fontSize, fontWeight, style, ...props }) => {
+const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
   const textStyle = [
     styles.text,
     color === 'textSecondary' && styles.colorTextSecondary,
@@ -37,7 +37,7 @@ const StyledText = ({ color, fontSize, fontWeight, style, ...props }) => {
     style,
   ]
 
-  return <NativeText style={textStyle} {...props} />
+  return <NativeText style={ textStyle } { ...props } />
 }
 
-export default StyledText
+export default Text

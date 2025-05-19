@@ -1,5 +1,5 @@
 import { View, Image, StyleSheet } from 'react-native'
-import StyledText from '../StyledText'
+import Text from '../Text'
 import theme from '../../theme'
 import CountBox from './CountBox'
 
@@ -43,10 +43,10 @@ const RepositoryItem = ({ item }) => {
           />
         </View>
         <View style={ styles.innerFlexContainer }>
-          <StyledText color='default' fontWeight='bold'>{ item.fullName }</StyledText>
-          <StyledText color='textSecondary'>{ item.description }</StyledText>
+          <Text color='default' fontWeight='bold'>{ item.fullName }</Text>
+          <Text color='textSecondary'>{ item.description }</Text>
           <View style={ styles.language }>
-            <StyledText color='textPrimary'>{ item.language }</StyledText>
+            <Text color='textPrimary'>{ item.language }</Text>
           </View>
         </View>
       </View>

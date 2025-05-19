@@ -1,11 +1,12 @@
 import { Link } from 'react-router-native'
-import StyledText from '../StyledText'
+import Text from '../Text'
 
-const AppBarTab = ({text, to}) => {
+const AppBarTab = ({ text, to, onPress }) => {
   return (
-  <Link to={to}>
-    <StyledText fontWeight="bold" color='textPrimary'>{text}</StyledText>
-  </Link>
-)}
+    <Link to={ to } onPress={ onPress }>
+      <Text fontWeight="bold" color='textPrimary'>{ text }</Text>
+    </Link>
+  )
+}
 
 export default AppBarTab

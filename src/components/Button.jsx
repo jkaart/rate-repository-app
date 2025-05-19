@@ -1,6 +1,6 @@
 import { Pressable } from 'react-native'
 import theme from '../theme'
-import StyledText from './StyledText'
+import Text from './Text'
 
 const styles = {
   display: 'flex',
@@ -12,8 +12,8 @@ const styles = {
 }
 
 const Button = ({ text, onPress }) => (
-  <Pressable onPress={onPress} style={styles}>
-    <StyledText fontWeight='bold' color='textPrimary'>{text}</StyledText>
+  <Pressable onPress={ onPress } style={ styles }>
+    <Text fontWeight='bold' color='textPrimary'>{ text }</Text>
   </Pressable>
 )
 
