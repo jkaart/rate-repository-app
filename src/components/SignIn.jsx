@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
   }
 })
 
-const SignInForm = ({ onSubmit }) => {
+export const SignInForm = ({ onSubmit }) => {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit,
+    onSubmit
   })
 
   return (
@@ -63,7 +63,6 @@ const SignInForm = ({ onSubmit }) => {
 const SignIn = () => {
   const [signIn] = useSignIn()
 
-
   const onSubmit = async (values) => {
     const { username, password } = values
 
@@ -74,7 +73,7 @@ const SignIn = () => {
       console.log(error)
     }
   }
-  return (<SignInForm onSubmit={ onSubmit } />)
+  return <SignInForm onSubmit={ onSubmit } />
 }
 
 export default SignIn

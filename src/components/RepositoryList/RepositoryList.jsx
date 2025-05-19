@@ -10,19 +10,27 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={ styles.separator } />
 
+export const RepositoryListContainer = ({ repositories }) => {
+
+  const repositoryNodes = repositories
+    ? repositories.edges.map((edge) => edge.node)
+    : []
+
+  return (
+    <FlatList
+      data={ repositoryNodes }
+      ItemSeparatorComponent={ <ItemSeparator /> }
+      renderItem={ ({ item, id }) => (<RepositoryItem item={ item } id={ id } />) }
+    />
+  )
+}
+
 const RepositoryList = () => {
   const { repositories, loading } = useRepositories()
   if (loading) {
     return null
   }
-  return (
-    <FlatList
-      data={ repositories }
-      ItemSeparatorComponent={ <ItemSeparator /> }
-      renderItem={ ({ item, id }) => (<RepositoryItem item={ item } id={ id } />) }
-    // other props
-    />
-  )
+  return <RepositoryListContainer repositories={ repositories } />
 }
 
 export default RepositoryList

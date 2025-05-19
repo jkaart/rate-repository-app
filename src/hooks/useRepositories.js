@@ -11,9 +11,7 @@ const useRepositories = () => {
 
   useEffect(() => {
     if (!loading) {
-      const response = data.repositories.edges
-      const repositoryData = response.map(edge => edge.node)
-      setRepositories(repositoryData)
+      setRepositories(data.repositories)
     }
   }, [data, loading])
 

@@ -10,7 +10,8 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
   ],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
@@ -21,7 +22,7 @@
       "jsx": true
     },
     "presets": [
-      "@babel/preset-react", "@babel/plugin-syntax-flow"
+      "@babel/preset-react"
     ]
   },
   "env": {

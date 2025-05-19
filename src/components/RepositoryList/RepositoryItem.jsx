@@ -34,7 +34,7 @@ const RepositoryItem = ({ item }) => {
   })
 
   return (
-    <View style={ styles.parentContainer }>
+    <View testID='repositoryItem' style={ styles.parentContainer }>
       <View style={ styles.flexContainer }>
         <View style={ { margin: 3 } }>
           <Image
