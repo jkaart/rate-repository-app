@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react-native'
 import { RepositoryListContainer } from '../../components/RepositoryList/RepositoryList'
 import { countWithSuffix } from '../../utils/functions'
+import { NativeRouter, Route, Routes } from 'react-router-native'
 
 describe('RepositoryList', () => {
   describe('RepositoryListContainer', () => {
@@ -48,7 +49,13 @@ describe('RepositoryList', () => {
         ],
       }
 
-      render(<RepositoryListContainer repositories={ repositories } />)
+      render(
+        <NativeRouter future={ { v7_startTransition: false, v7_relativeSplatPath: false } }>
+          <Routes>
+            <Route path='/' element={ <RepositoryListContainer repositories={ repositories } /> } />
+          </Routes>
+        </NativeRouter>
+      )
       const repositoryItems = screen.getAllByTestId('repositoryItem')
       //const [firstRepositoryItem, secondRepositoryItem] = repositoryItems
       //screen.debug()

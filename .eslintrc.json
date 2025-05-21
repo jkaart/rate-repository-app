@@ -11,6 +11,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react-native/all",
     "plugin:jest/recommended"
   ],
   "parser": "@babel/eslint-parser",

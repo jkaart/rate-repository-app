@@ -1,4 +1,4 @@
-import { TextInput, View } from 'react-native'
+import { StyleSheet, TextInput, View } from 'react-native'
 import Text from './Text'
 import theme from '../theme'
 
@@ -12,12 +12,19 @@ const containerStyles = {
   borderColor: theme.colors.inputSecondary
 }
 
+const styles = StyleSheet.create({
+  innerContainerStyle: {
+    flex: 1,
+    padding: 5
+  }
+})
+
 const containerErrorStyles = { ...containerStyles, borderColor: theme.colors.errorColor }
 
 const TextInputField = ({ placeholder, value, onChangeText, secureTextEntry, error }) => (
   <>
     <View style={ error ? containerErrorStyles : containerStyles }>
-      <View style={ { flex: 1, padding: 5 } } >
+      <View style={ styles.innerContainerStyle } >
         <TextInput
           placeholder={ placeholder }
           error={ true }

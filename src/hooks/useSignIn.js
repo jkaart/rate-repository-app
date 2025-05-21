@@ -1,5 +1,5 @@
 import { useApolloClient, useMutation } from '@apollo/client'
-import { AUTHENTICATE } from '../graphql/queries'
+import { AUTHENTICATE } from '../graphql/mutations'
 import useAuthStorage from '../hooks/useAuthStorage'
 import { useNavigate } from 'react-router-native'
 

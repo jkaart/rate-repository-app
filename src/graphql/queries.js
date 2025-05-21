@@ -1,31 +1,27 @@
 import { gql } from '@apollo/client'
+import { REPOSITORY } from './fragments'
 
 export const GET_REPOSITORIES = gql`
   query {
     repositories {
         edges {
           node {
-            id
-            fullName
-            description
-            language
-            forksCount
-            stargazersCount
-            ratingAverage
-            reviewCount
-            ownerAvatarUrl
+            ...RepositoryDetails
           }
         }
     }
   }
+  ${REPOSITORY}
 `
 
-export const AUTHENTICATE = gql`
-  mutation authenticate($username: String!, $password: String!) {
-    authenticate(credentials: {username: $username, password: $password}) {
-      accessToken
+export const GET_SINGLE_REPOSITORY = gql`
+  query singleRepository($repositoryId: ID!) {
+    repository(id: $repositoryId) {
+      ...RepositoryDetails
+      url
     }
-}
+  }
+  ${REPOSITORY}
 `
 
 export const GET_USERINFO = gql`

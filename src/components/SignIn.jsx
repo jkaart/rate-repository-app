@@ -23,11 +23,11 @@ const validationSchema = yup.object().shape({
 
 const styles = StyleSheet.create({
   container: {
-    padding: 8,
+    backgroundColor: theme.colors.backgroundPrimary,
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
-    backgroundColor: theme.colors.backgroundPrimary,
+    padding: 8,
   }
 })
 

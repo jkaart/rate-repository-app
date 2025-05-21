@@ -10,9 +10,9 @@ import { useNavigate } from 'react-router-native'
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
-    paddingBottom: 20,
     backgroundColor: theme.colors.secondary,
+    paddingBottom: 20,
+    paddingTop: Constants.statusBarHeight,
   },
   scrollView: {
     display: 'flex',
