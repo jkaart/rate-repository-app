@@ -13,3 +13,23 @@ export const REPOSITORY = gql`
     ownerAvatarUrl
   }
 `
+
+export const USER = gql`
+  fragment UserDetails on User {
+    id
+    username
+  }
+`
+
+export const REVIEW = gql`
+  fragment ReviewDetails on Review {
+    id
+    text
+    rating
+    createdAt
+    user {
+      ...UserDetails
+    }
+  }
+  ${USER}
+`
