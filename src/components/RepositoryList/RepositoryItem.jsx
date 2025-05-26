@@ -67,12 +67,12 @@ const reviewStyles = StyleSheet.create({
     alignItems: 'center',
     aspectRatio: '1/1',
     borderColor: theme.colors.primary,
-    borderRadius: 50,
+    borderRadius: 25,
     borderStyle: 'solid',
     borderWidth: 3,
+    height: 50,
     justifyContent: 'center',
-    minHeight: 50,
-    minWidth: 50,
+    width: 50,
   }
 })
 
@@ -88,10 +88,11 @@ export const RepositoryItem = ({ item }) => {
         </View>
         <View style={ styles.innerFlexContainer }>
           <Text color='default' fontWeight='bold'>{ item.fullName }</Text>
-          <Text color='textSecondary'>{ item.description }</Text>
-          <View style={ styles.language }>
-            <Text color='textPrimary'>{ item.language }</Text>
-          </View>
+          { item.description && (<Text color='textSecondary'>{ item.description }</Text>) }
+          { item.language &&
+            (<View style={ styles.language }>
+              <Text color='textPrimary'>{ item.language }</Text>
+            </View>) }
         </View>
       </View>
       <View style={ styles.countsContainer }>
@@ -150,7 +151,7 @@ const ReviewItem = ({ review }) => {
       <View style={ reviewStyles.innerFlexContainer }>
         <Text fontWeight='bold'>{ review.user.username }</Text>
         <Text color='textSecondary'>{ formatDate(review.createdAt) }</Text>
-          <Text>{ review.text }</Text>
+        <Text>{ review.text }</Text>
       </View>
     </View>
   )

@@ -5,7 +5,10 @@ import { GET_SINGLE_REPOSITORY } from '../graphql/queries'
 const useSingleRepository = (id) => {
   const [repositoryData, setRepository] = useState(null)
 
-  const { data, loading } = useQuery(GET_SINGLE_REPOSITORY, { variables: { repositoryId: id } })
+  const { data, loading } = useQuery(GET_SINGLE_REPOSITORY, {
+    variables: { repositoryId: id },
+    fetchPolicy: 'cache-and-network'
+  })
 
   useEffect(() => {
     if (!loading) {

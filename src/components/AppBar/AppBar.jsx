@@ -44,7 +44,10 @@ const AppBar = () => {
           <AppBarTab text='Repositories' to='/' />
           { data && data.me === null
             ? <AppBarTab text='Sign in' to='/signin' />
-            : <AppBarTab text='Sign out' onPress={ signOutHandler } />
+            : <>
+                <AppBarTab text='Create a review' to='/addreview'/>
+                <AppBarTab text='Sign out' onPress={ signOutHandler } />
+              </>
           }
         </View>
       }</ScrollView>
