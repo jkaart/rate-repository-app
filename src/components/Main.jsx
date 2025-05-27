@@ -6,13 +6,14 @@ import theme from '../theme'
 import SignIn from './SignIn'
 import RepositoryItem from './RepositoryList/RepositoryItem'
 import AddReview from './Review'
+import SignUp from './SignUp'
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.backgroundSecondary,
     flexGrow: 1,
     flexShrink: 1,
-  },
+  }
 })
 
 const Main = () => {
@@ -20,10 +21,14 @@ const Main = () => {
     <View style={ styles.container }>
       <AppBar />
       <Routes>
-        <Route path='/' element={ <RepositoryList /> } />
-        <Route path='/signin' element={ <SignIn /> } />
-        <Route path='/addreview' element={ <AddReview /> } />
-        <Route path='/repository/:id' element={ <RepositoryItem viewSingle={ true } /> } />
+        <Route path="/" element={ <RepositoryList /> } />
+        <Route path="/signin" element={ <SignIn /> } />
+        <Route path="/signup" element={ <SignUp /> } />
+        <Route path="/addreview" element={ <AddReview /> } />
+        <Route
+          path="/repository/:id"
+          element={ <RepositoryItem viewSingle={ true } /> }
+        />
         <Route path="*" element={ <Navigate to="/" replace /> } />
       </Routes>
     </View>

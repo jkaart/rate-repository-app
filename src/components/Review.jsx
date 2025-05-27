@@ -1,11 +1,12 @@
-import TextInputField from './TextInputField'
 import { useFormik } from 'formik'
+import { useMutation } from '@apollo/client'
+import { useNavigate } from 'react-router-native'
 import * as yup from 'yup'
 import { CREATE_REVIEW } from '../graphql/mutations'
-import { useMutation } from '@apollo/client'
+
+import TextInputField from './TextInputField'
 import Form from './Form'
 import Button from './Button'
-import { useNavigate } from 'react-router-native'
 
 const initialValues = {
   ownerName: '',
@@ -71,7 +72,7 @@ const ReviewForm = ({ onSubmit }) => {
 }
 
 const AddReview = () => {
-  const [mutate, result] = useMutation(CREATE_REVIEW)
+  const [mutate] = useMutation(CREATE_REVIEW)
   const navigate = useNavigate()
 
   const onSubmit = async (values) => {

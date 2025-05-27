@@ -21,24 +21,30 @@ const styles = StyleSheet.create({
 
 const containerErrorStyles = { ...containerStyles, borderColor: theme.colors.errorColor }
 
-const TextInputField = ({ placeholder, value, keyboardType, multiline, onChangeText, secureTextEntry, error }) => (
+const TextInputField = ({
+  placeholder,
+  value,
+  keyboardType,
+  multiline,
+  onChangeText,
+  secureTextEntry,
+  error,
+}) => (
   <>
-    <View style={ error ? containerErrorStyles : containerStyles }>
-      <View style={ styles.innerContainerStyle } >
+    <View style={error ? containerErrorStyles : containerStyles}>
+      <View style={styles.innerContainerStyle}>
         <TextInput
-          placeholder={ placeholder }
-          error={ true }
-          value={ value }
-          onChangeText={ onChangeText }
-          keyboardType={ keyboardType ? keyboardType : 'default' }
-          multiline={ multiline ? multiline : false }
-          secureTextEntry={ secureTextEntry ? secureTextEntry : false }
+          placeholder={placeholder}
+          error={true}
+          value={value}
+          onChangeText={onChangeText}
+          keyboardType={keyboardType ? keyboardType : 'default'}
+          multiline={multiline ? multiline : false}
+          secureTextEntry={secureTextEntry ? secureTextEntry : false}
         />
       </View>
     </View>
-    { error && (
-      <Text style={ { color: theme.colors.errorColor } }>{ error }</Text>
-    ) }
+    {error && <Text style={{ color: theme.colors.errorColor }}>{error}</Text>}
   </>
 )
 

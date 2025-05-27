@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   scrollView: {
     display: 'flex',
     flexDirection: 'row',
-    gap: 5,
+    gap: 25,
     justifyContent: 'flex-start',
   }
 })
@@ -39,18 +39,24 @@ const AppBar = () => {
 
   return (
     <View style={ styles.container }>
-      <ScrollView horizontal>{
-        <View style={ styles.scrollView }>
-          <AppBarTab text='Repositories' to='/' />
-          { data && data.me === null
-            ? <AppBarTab text='Sign in' to='/signin' />
-            : <>
-                <AppBarTab text='Create a review' to='/addreview'/>
-                <AppBarTab text='Sign out' onPress={ signOutHandler } />
+      <ScrollView horizontal>
+        {
+          <View style={ styles.scrollView }>
+            <AppBarTab text="Repositories" to="/" />
+            { data && data.me === null ? (
+              <>
+                <AppBarTab text="Sign up" to="/signup" />
+                <AppBarTab text="Sign in" to="/signin" />
               </>
-          }
-        </View>
-      }</ScrollView>
+            ) : (
+              <>
+                <AppBarTab text="Create a review" to="/addreview" />
+                <AppBarTab text="Sign out" onPress={ signOutHandler } />
+              </>
+            ) }
+          </View>
+        }
+      </ScrollView>
     </View>
   )
 }
