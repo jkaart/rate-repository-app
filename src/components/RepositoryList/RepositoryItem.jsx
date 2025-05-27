@@ -6,6 +6,7 @@ import Button from '../Button'
 import { useNavigate, useParams } from 'react-router-native'
 import useSingleRepository from '../../hooks/useSingleRepository'
 import useReviews from '../../hooks/useReviews'
+import { formatDate } from '../../utils/functions'
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -131,18 +132,7 @@ const ReviewRating = ({ value }) => (
       <Text color='primary' fontWeight='bold' fontSize='large'>{ value }</Text>
     </View>
   </View>
-
 )
-
-const formatDate = (value) => {
-  const options = {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
-  }
-  const date = new Date(value)
-  return date.toLocaleDateString('fi-FI', options)
-}
 
 const ReviewItem = ({ review }) => {
   return (
@@ -172,10 +162,8 @@ const SingleRepository = () => {
       renderItem={ ({ item }) => <ReviewItem review={ item } /> }
       keyExtractor={ ({ id }) => id }
       ListHeaderComponent={ () => <RepositoryInfo repository={ repository.repositoryData } viewSingle={ true } /> }
-    // ...
     />
   )
-
 }
 
 export default SingleRepository

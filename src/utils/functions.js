@@ -5,3 +5,13 @@ export const countWithSuffix = (value) => {
   }
   return value
 }
+
+export const formatDate = (value) => {
+  const options = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  }
+  const date = new Date(value)
+  return date.toLocaleDateString('fi-FI', options)
+}
