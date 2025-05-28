@@ -2,11 +2,11 @@ import { useFormik } from 'formik'
 import { useMutation } from '@apollo/client'
 import { useNavigate } from 'react-router-native'
 import * as yup from 'yup'
-import { CREATE_REVIEW } from '../graphql/mutations'
+import { CREATE_REVIEW } from '../../graphql/mutations'
 
-import TextInputField from './TextInputField'
-import Form from './Form'
-import Button from './Button'
+import TextInputField from '../TextInputField'
+import Form from '../Form'
+import Button from '../Button'
 
 const initialValues = {
   ownerName: '',

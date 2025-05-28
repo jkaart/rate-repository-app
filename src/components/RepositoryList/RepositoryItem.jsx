@@ -6,11 +6,14 @@ import Button from '../Button'
 import { useNavigate, useParams } from 'react-router-native'
 import useSingleRepository from '../../hooks/useSingleRepository'
 import useReviews from '../../hooks/useReviews'
-import { formatDate } from '../../utils/functions'
+import ReviewItem from '../Reviews/ReviewItem'
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    marginHorizontal: 25,
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 5,
+    justifyContent: 'space-around',
     marginVertical: 5
   },
   countsContainer: {
@@ -48,35 +51,6 @@ const styles = StyleSheet.create({
   },
 })
 
-const reviewStyles = StyleSheet.create({
-  flexContainer: {
-    ...styles.flexContainer,
-    alignContent: 'space-between',
-    backgroundColor: theme.colors.backgroundPrimary,
-    marginBottom: 20,
-    padding: 5
-  },
-  innerFlexContainer: {
-    ...styles.innerFlexContainer,
-  },
-  revieWRatingContainer: {
-    ...styles.innerFlexContainer,
-    minHeight: 60,
-    minWidth: 60,
-  },
-  reviewRatingCircle: {
-    alignItems: 'center',
-    aspectRatio: '1/1',
-    borderColor: theme.colors.primary,
-    borderRadius: 25,
-    borderStyle: 'solid',
-    borderWidth: 3,
-    height: 50,
-    justifyContent: 'center',
-    width: 50,
-  }
-})
-
 export const RepositoryItem = ({ item }) => {
   return (
     <View testID='repositoryItem' style={ styles.parentContainer }>
@@ -107,43 +81,22 @@ export const RepositoryItem = ({ item }) => {
 }
 
 export const RepositoryInfo = ({ repository, viewSingle }) => {
+  const navigate = useNavigate()
   if (viewSingle) {
     return (
       <>
         <RepositoryItem item={ repository } />
         <View style={ styles.buttonContainer }>
-          <Button text="Open in GitHub" onPress={ () => Linking.openURL(repository.url) } />
+          <Button text='Open in GitHub' onPress={ () => Linking.openURL(repository.url) } />
         </View>
       </>
     )
   }
 
-  const navigate = useNavigate()
   return (
     <Pressable onPress={ () => navigate(`/repository/${repository.id}`) }>
       <RepositoryItem item={ repository } />
     </Pressable>
-  )
-}
-
-const ReviewRating = ({ value }) => (
-  <View style={ reviewStyles.revieWRatingContainer }>
-    <View style={ reviewStyles.reviewRatingCircle }>
-      <Text color='primary' fontWeight='bold' fontSize='large'>{ value }</Text>
-    </View>
-  </View>
-)
-
-const ReviewItem = ({ review }) => {
-  return (
-    <View key={ review.id } style={ reviewStyles.flexContainer }>
-      <ReviewRating value={ review.rating } />
-      <View style={ reviewStyles.innerFlexContainer }>
-        <Text fontWeight='bold'>{ review.user.username }</Text>
-        <Text color='textSecondary'>{ formatDate(review.createdAt) }</Text>
-        <Text>{ review.text }</Text>
-      </View>
-    </View>
   )
 }
 

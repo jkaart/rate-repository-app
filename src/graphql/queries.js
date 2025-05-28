@@ -46,10 +46,22 @@ export const GET_REVIEWS = gql`
 `
 
 export const GET_USERINFO = gql`
-  query {
+  query getUserInfo($includeReviews: Boolean = false) {
     me {
       ...UserDetails
+      reviews @include(if: $includeReviews) {
+        edges {
+          node {
+            ...ReviewDetails
+            repository {
+              fullName
+              id
+          }
+          }
+        }
+      }
     }
   }
   ${USER}
+  ${REVIEW}
 `

@@ -11,8 +11,8 @@ const styles = {
   paddingHorizontal: 15,
 }
 
-const Button = ({ text, onPress }) => (
-  <Pressable onPress={ onPress } style={ styles }>
+const Button = ({ text, onPress, color }) => (
+  <Pressable onPress={ onPress } style={ color ? { ...styles, backgroundColor: color } : styles }>
     <Text fontWeight='bold' color='textPrimary'>{ text }</Text>
   </Pressable>
 )

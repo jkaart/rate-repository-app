@@ -7,6 +7,7 @@ import { Picker } from '@react-native-picker/picker'
 import TextInputField from '../TextInputField'
 import theme from '../../theme'
 import { useDebounce } from 'use-debounce'
+import ItemSeparator from '../ItemSeparator'
 
 const styles = StyleSheet.create({
   searchBar: {
@@ -19,12 +20,7 @@ const styles = StyleSheet.create({
     gap: 10,
     padding: 8,
   },
-  separator: {
-    height: 10,
-  },
 })
-
-const ItemSeparator = () => <View style={ styles.separator } />
 
 const OrderSelect = ({ order, setOrder }) => {
   return (
@@ -61,7 +57,7 @@ export class RepositoryListContainer extends React.Component {
     )
   }
 
-  render () {
+  render() {
     const { repositories } = this.props
     const repositoryNodes = repositories
       ? repositories.edges.map((edge) => edge.node)
