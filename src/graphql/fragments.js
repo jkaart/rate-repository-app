@@ -33,3 +33,11 @@ export const REVIEW = gql`
   }
   ${USER}
 `
+
+export const PAGE_INFO = gql`
+  fragment PageInfoDetails on PageInfo {
+    endCursor
+    startCursor
+    hasNextPage
+  }
+`

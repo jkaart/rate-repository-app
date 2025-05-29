@@ -41,32 +41,32 @@ const ReviewForm = ({ onSubmit }) => {
     <Form>
       <TextInputField
         placeholder='Repository owner name'
-        value={ formik.values.ownerName }
-        onChangeText={ formik.handleChange('ownerName') }
-        error={ formik.errors.ownerName ? formik.errors.ownerName : null }
+        value={formik.values.ownerName}
+        onChangeText={formik.handleChange('ownerName')}
+        error={formik.errors.ownerName ? formik.errors.ownerName : null}
       />
       <TextInputField
         placeholder='Repository name'
-        value={ formik.values.repositoryName }
-        onChangeText={ formik.handleChange('repositoryName') }
-        error={ formik.errors.repositoryName ? formik.errors.repositoryName : null }
+        value={formik.values.repositoryName}
+        onChangeText={formik.handleChange('repositoryName')}
+        error={formik.errors.repositoryName ? formik.errors.repositoryName : null}
       />
       <TextInputField
         placeholder='Rating'
-        value={ formik.values.rating }
+        value={formik.values.rating}
         keyboardType='numeric'
-        onChangeText={ formik.handleChange('rating') }
-        error={ formik.errors.rating ? formik.errors.rating : null }
+        onChangeText={formik.handleChange('rating')}
+        error={formik.errors.rating ? formik.errors.rating : null}
       />
       <TextInputField
         placeholder='Review'
-        value={ formik.values.text }
-        multiline={ true }
-        onChangeText={ formik.handleChange('text') }
-        error={ formik.errors.text ? formik.errors.text : null }
+        value={formik.values.text}
+        multiline={true}
+        onChangeText={formik.handleChange('text')}
+        error={formik.errors.text ? formik.errors.text : null}
       />
 
-      <Button text='Add' onPress={ formik.handleSubmit } />
+      <Button text='Add' onPress={formik.handleSubmit} />
     </Form>
   )
 }
@@ -79,7 +79,7 @@ const AddReview = () => {
     const { data } = await mutate({ variables: { ...values, rating: Number(values.rating) } })
     navigate(`/repository/${data.createReview.repositoryId}`)
   }
-  return <ReviewForm onSubmit={ onSubmit } />
+  return <ReviewForm onSubmit={onSubmit} />
 }
 
 export default AddReview

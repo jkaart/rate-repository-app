@@ -19,19 +19,19 @@ const styles = StyleSheet.create({
 
 const Main = () => {
   return (
-    <View style={ styles.container }>
+    <View style={styles.container}>
       <AppBar />
       <Routes>
-        <Route path='/' element={ <RepositoryList /> } />
+        <Route path='/' element={<RepositoryList />} />
         <Route
           path='/repository/:id'
-          element={ <RepositoryItem viewSingle={ true } /> }
+          element={<RepositoryItem viewSingle={true} />}
         />
-        <Route path='/signin' element={ <SignIn /> } />
-        <Route path='/signup' element={ <SignUp /> } />
-        <Route path='/addreview' element={ <AddReview /> } />
-        <Route path='/myreviews' element={ <ReviewsList /> } />
-        <Route path="*" element={ <Navigate to="/" replace /> } />
+        <Route path='/signin' element={<SignIn />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/addreview' element={<AddReview />} />
+        <Route path='/myreviews' element={<ReviewsList />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </View>
   )

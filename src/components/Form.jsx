@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
 })
 
 const Form = ({ children }) => (
-  <View style={ styles.container }>
-    { children }
+  <View style={styles.container}>
+    {children}
   </View>
 )
 

@@ -3,8 +3,8 @@ import Text from '../Text'
 
 const AppBarTab = ({ text, to, onPress }) => {
   return (
-    <Link to={ to } onPress={ onPress }>
-      <Text fontWeight="bold" color='textPrimary'>{ text }</Text>
+    <Link to={to} onPress={onPress}>
+      <Text fontWeight="bold" color='textPrimary'>{text}</Text>
     </Link>
   )
 }

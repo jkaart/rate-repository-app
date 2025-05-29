@@ -44,7 +44,6 @@ const ReviewActions = ({ reviewId, repositoryId }) => {
         'Are you sure you want delete this review?', [
         {
           text: 'Cancel',
-          onPress: () => { console.log('cancel') },
           style: 'cancel'
         },
         {
@@ -56,9 +55,9 @@ const ReviewActions = ({ reviewId, repositoryId }) => {
   }
 
   return (
-    <View style={ styles.container }>
-      <Button text='View repository' onPress={ () => navigate(`/repository/${repositoryId}`) } />
-      <Button text='Delete review' onPress={ deleteHandler } color='red' />
+    <View style={styles.container}>
+      <Button text='View repository' onPress={() => navigate(`/repository/${repositoryId}`)} />
+      <Button text='Delete review' onPress={deleteHandler} color='red' />
     </View>
   )
 }
@@ -74,9 +73,13 @@ const ReviewsList = () => {
   const reviews = data.me.reviews.edges.map((review) => review.node)
   return (
     <FlatList
-      data={ reviews }
-      ItemSeparatorComponent={ <ItemSeparator /> }
-      renderItem={ ({ item }) => (<ReviewItem review={ item }>{ <ReviewActions reviewId={ item.id } repositoryId={ item.repository.id } /> }</ReviewItem>) }
+      data={reviews}
+      ItemSeparatorComponent={<ItemSeparator />}
+      renderItem={({ item }) => (
+        <ReviewItem review={item}>
+          {<ReviewActions reviewId={item.id} repositoryId={item.repository.id} />}
+        </ReviewItem>
+      )}
     />
   )
 

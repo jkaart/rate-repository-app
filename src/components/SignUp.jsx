@@ -74,12 +74,11 @@ const SignUp = () => {
 
     try {
       await signUp({ username, password })
-      console.log('Sign up')
     } catch (error) {
       console.log(error)
     }
   }
-  return <SignUpForm onSubmit={ onSubmit } />
+  return <SignUpForm onSubmit={onSubmit} />
 }
 
 export default SignUp

@@ -39,23 +39,23 @@ export const SignInForm = ({ onSubmit }) => {
   })
 
   return (
-    <View style={ styles.container }>
+    <View style={styles.container}>
       <TextInputField
-        placeholder={ 'Username' }
-        value={ formik.values.username }
-        onChangeText={ formik.handleChange('username') }
-        error={ formik.errors.username ? formik.errors.username : null }
+        placeholder={'Username'}
+        value={formik.values.username}
+        onChangeText={formik.handleChange('username')}
+        error={formik.errors.username ? formik.errors.username : null}
       />
 
       <TextInputField
-        placeholder={ 'Password' }
-        value={ formik.values.password }
-        onChangeText={ formik.handleChange('password') }
-        error={ formik.errors.password ? formik.errors.password : null }
-        secureTextEntry={ true }
+        placeholder={'Password'}
+        value={formik.values.password}
+        onChangeText={formik.handleChange('password')}
+        error={formik.errors.password ? formik.errors.password : null}
+        secureTextEntry={true}
       />
 
-      <Button text='Sign in' onPress={ formik.handleSubmit } />
+      <Button text='Sign in' onPress={formik.handleSubmit} />
     </View>
   )
 }
@@ -68,12 +68,11 @@ const SignIn = () => {
 
     try {
       await signIn({ username, password })
-      console.log('Sign in')
     } catch (error) {
       console.log(error)
     }
   }
-  return <SignInForm onSubmit={ onSubmit } />
+  return <SignInForm onSubmit={onSubmit} />
 }
 
 export default SignIn

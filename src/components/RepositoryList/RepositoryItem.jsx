@@ -52,29 +52,33 @@ const styles = StyleSheet.create({
 })
 
 export const RepositoryItem = ({ item }) => {
+  if (!item) {
+    return null
+  }
+
   return (
-    <View testID='repositoryItem' style={ styles.parentContainer }>
-      <View style={ styles.flexContainer }>
-        <View style={ styles.imageContainer }>
+    <View testID='repositoryItem' style={styles.parentContainer}>
+      <View style={styles.flexContainer}>
+        <View style={styles.imageContainer}>
           <Image
-            style={ styles.image }
-            source={ { uri: item.ownerAvatarUrl } }
+            style={styles.image}
+            source={{ uri: item.ownerAvatarUrl }}
           />
         </View>
-        <View style={ styles.innerFlexContainer }>
-          <Text color='default' fontWeight='bold'>{ item.fullName }</Text>
-          { item.description && (<Text color='textSecondary'>{ item.description }</Text>) }
-          { item.language &&
-            (<View style={ styles.language }>
-              <Text color='textPrimary'>{ item.language }</Text>
-            </View>) }
+        <View style={styles.innerFlexContainer}>
+          <Text color='default' fontWeight='bold'>{item.fullName}</Text>
+          {item.description && (<Text color='textSecondary'>{item.description}</Text>)}
+          {item.language &&
+            (<View style={styles.language}>
+              <Text color='textPrimary'>{item.language}</Text>
+            </View>)}
         </View>
       </View>
-      <View style={ styles.countsContainer }>
-        <CountBox text='Stars' value={ item.stargazersCount } />
-        <CountBox text='Forks' value={ item.forksCount } />
-        <CountBox text='Reviews' value={ item.reviewCount } />
-        <CountBox text='Ratings' value={ item.ratingAverage } />
+      <View style={styles.countsContainer}>
+        <CountBox text='Stars' value={item.stargazersCount} />
+        <CountBox text='Forks' value={item.forksCount} />
+        <CountBox text='Reviews' value={item.reviewCount} />
+        <CountBox text='Ratings' value={item.ratingAverage} />
       </View>
     </View>
   )
@@ -85,17 +89,17 @@ export const RepositoryInfo = ({ repository, viewSingle }) => {
   if (viewSingle) {
     return (
       <>
-        <RepositoryItem item={ repository } />
-        <View style={ styles.buttonContainer }>
-          <Button text='Open in GitHub' onPress={ () => Linking.openURL(repository.url) } />
+        <RepositoryItem item={repository} />
+        <View style={styles.buttonContainer}>
+          <Button text='Open in GitHub' onPress={() => Linking.openURL(repository.url)} />
         </View>
       </>
     )
   }
 
   return (
-    <Pressable onPress={ () => navigate(`/repository/${repository.id}`) }>
-      <RepositoryItem item={ repository } />
+    <Pressable onPress={() => navigate(`/repository/${repository.id}`)}>
+      <RepositoryItem item={repository} />
     </Pressable>
   )
 }
@@ -103,18 +107,20 @@ export const RepositoryInfo = ({ repository, viewSingle }) => {
 const SingleRepository = () => {
   const { id } = useParams()
   const repository = useSingleRepository(id)
-  const reviews = useReviews(id)
+  const { reviews, fetchMore } = useReviews({ repositoryId: id, first: 8 })
 
-  if (repository.loading || !repository.repositoryData || reviews.loading || !reviews.reviewsData) {
-    return null
+  const onEndReach = () => {
+    fetchMore()
   }
 
   return (
     <FlatList
-      data={ reviews.reviewsData.reviews }
-      renderItem={ ({ item }) => <ReviewItem review={ item } /> }
-      keyExtractor={ ({ id }) => id }
-      ListHeaderComponent={ () => <RepositoryInfo repository={ repository.repositoryData } viewSingle={ true } /> }
+      data={reviews?.reviews}
+      renderItem={({ item }) => <ReviewItem review={item} />}
+      keyExtractor={({ id }) => id}
+      ListHeaderComponent={() => <RepositoryInfo repository={repository.repositoryData} viewSingle={true} />}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
     />
   )
 }

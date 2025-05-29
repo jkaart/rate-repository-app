@@ -48,7 +48,7 @@ const ReviewItem = ({ review, children }) => {
           <Text fontWeight='bold'>{ review.user.username }</Text>
           <Text color='textSecondary'>{ formatDate(review.createdAt) }</Text>
           { review.repository ? <Text fontWeight='bold'>{ review.repository.fullName }</Text> : null }
-          { review.text ? (<Text>{ review.text }</Text>) : null}
+          { review.text ? (<Text>{ review.text }</Text>) : null }
         </View>
       </View>
       { children }

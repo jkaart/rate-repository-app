@@ -38,12 +38,12 @@ const AppBar = () => {
   }
 
   return (
-    <View style={ styles.container }>
+    <View style={styles.container}>
       <ScrollView horizontal>
         {
-          <View style={ styles.scrollView }>
+          <View style={styles.scrollView}>
             <AppBarTab text="Repositories" to="/" />
-            { data && data.me === null ? (
+            {data && data.me === null ? (
               <>
                 <AppBarTab text="Sign up" to="/signup" />
                 <AppBarTab text="Sign in" to="/signin" />
@@ -51,10 +51,10 @@ const AppBar = () => {
             ) : (
               <>
                 <AppBarTab text="Create a review" to="/addreview" />
-                <AppBarTab text="Sign out" onPress={ signOutHandler } />
+                <AppBarTab text="Sign out" onPress={signOutHandler} />
                 <AppBarTab text="My reviews" to="/myreviews" />
               </>
-            ) }
+            )}
           </View>
         }
       </ScrollView>

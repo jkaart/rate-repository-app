@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
 const OrderSelect = ({ order, setOrder }) => {
   return (
     <Picker
-      selectedValue={ order }
-      onValueChange={ (itemValue) => setOrder(itemValue) }
+      selectedValue={order}
+      onValueChange={(itemValue) => setOrder(itemValue)}
       prompt="Select order"
-      style={ styles.searchBar }
+      style={styles.searchBar}
     >
       <Picker.Item label="Latest repositories" value="latest" />
       <Picker.Item label="Highest rated repositories" value="highest" />
@@ -39,7 +39,7 @@ const OrderSelect = ({ order, setOrder }) => {
 
 const Search = ({ search, setSearch }) => {
   return (
-    <TextInputField placeholder="Search" value={ search } onChangeText={ setSearch } />
+    <TextInputField placeholder="Search" value={search} onChangeText={setSearch} />
   )
 }
 
@@ -48,9 +48,9 @@ export class RepositoryListContainer extends React.Component {
     const { search, setSearch, order, setOrder } = this.props
     return (
       <>
-        <View style={ styles.searchContainer }>
-          <Search search={ search } setSearch={ setSearch } />
-          <OrderSelect order={ order } setOrder={ setOrder } />
+        <View style={styles.searchContainer}>
+          <Search search={search} setSearch={setSearch} />
+          <OrderSelect order={order} setOrder={setOrder} />
         </View>
         <ItemSeparator />
       </>
@@ -58,19 +58,21 @@ export class RepositoryListContainer extends React.Component {
   }
 
   render() {
-    const { repositories } = this.props
+    const { repositories, onEndReach } = this.props
     const repositoryNodes = repositories
       ? repositories.edges.map((edge) => edge.node)
       : []
 
     return (
       <FlatList
-        data={ repositoryNodes }
-        ItemSeparatorComponent={ <ItemSeparator /> }
-        renderItem={ ({ item }) => (
-          <RepositoryInfo repository={ item } viewSingle={ false } />
-        ) }
-        ListHeaderComponent={ this.renderHeader }
+        data={repositoryNodes}
+        ItemSeparatorComponent={<ItemSeparator />}
+        renderItem={({ item }) => (
+          <RepositoryInfo repository={item} viewSingle={false} />
+        )}
+        ListHeaderComponent={this.renderHeader}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
       />
     )
   }
@@ -81,15 +83,43 @@ const RepositoryList = () => {
   const [search, setSearch] = useState('')
   const [value] = useDebounce(search, 500)
 
-  const { repositories } = useRepositories(order, value)
+  const orderBy =
+    order === 'latest'
+      ? 'CREATED_AT'
+      : order === 'highest'
+        ? 'RATING_AVERAGE'
+        : order === 'lowest'
+          ? 'RATING_AVERAGE'
+          : null
+
+  const orderDirection =
+    order === 'latest'
+      ? 'DESC'
+      : order === 'highest'
+        ? 'DESC'
+        : order === 'lowest'
+          ? 'ASC'
+          : null
+
+  const { repositories, fetchMore } = useRepositories({
+    first: 8,
+    orderBy,
+    orderDirection,
+    searchKeyword: value
+  })
+
+  const onEndReach = () => {
+    fetchMore()
+  }
 
   return (
     <RepositoryListContainer
-      repositories={ repositories }
-      order={ order }
-      setOrder={ setOrder }
-      search={ search }
-      setSearch={ setSearch }
+      repositories={repositories}
+      onEndReach={onEndReach}
+      order={order}
+      setOrder={setOrder}
+      search={search}
+      setSearch={setSearch}
     />
   )
 }

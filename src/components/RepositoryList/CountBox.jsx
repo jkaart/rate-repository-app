@@ -12,9 +12,9 @@ const CountBox = ({ text, value }) => {
   const count = countWithSuffix(value)
   return (
     <>
-      <View style={ styles.container }>
-        <Text fontWeight='bold' color='default'>{ count }</Text>
-        <Text color='textSecondary'>{ text }</Text>
+      <View style={styles.container}>
+        <Text fontWeight='bold' color='default'>{count}</Text>
+        <Text color='textSecondary'>{text}</Text>
       </View>
     </>
   )

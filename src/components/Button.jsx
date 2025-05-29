@@ -12,8 +12,8 @@ const styles = {
 }
 
 const Button = ({ text, onPress, color }) => (
-  <Pressable onPress={ onPress } style={ color ? { ...styles, backgroundColor: color } : styles }>
-    <Text fontWeight='bold' color='textPrimary'>{ text }</Text>
+  <Pressable onPress={onPress} style={color ? { ...styles, backgroundColor: color } : styles}>
+    <Text fontWeight='bold' color='textPrimary'>{text}</Text>
   </Pressable>
 )
 
